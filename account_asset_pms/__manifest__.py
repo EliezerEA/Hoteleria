@@ -11,7 +11,7 @@
     "author": "Comunitea, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
-    "depends": ["account_asset_management", "pms"],
+    "depends": ["pms"],
     "data": [
         "views/account_asset_view.xml",
     ],
