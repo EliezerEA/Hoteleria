@@ -11,14 +11,14 @@
     "website": "https://github.com/OCA/pms",
     "depends": [
         "pms",
-        #"partner_firstname",
-        #"partner_second_lastname",
-        #"partner_contact_gender",
-        #"partner_contact_birthdate",
-        #"partner_contact_nationality",
-        #"base_iso3166",
-        #"queue_job",
-        #"base_vat",
+        "partner_firstname",
+        "partner_second_lastname",
+        "partner_contact_gender",
+        "partner_contact_birthdate",
+        "partner_contact_nationality",
+        "base_iso3166",
+        "queue_job",
+        "base_vat",
     ],
     "external_dependencies": {
         "python": [

@@ -11,7 +11,7 @@
     "author": "Comunitea, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
-    "depends": ["pms"],
+    "depends": ["mis_builder", "pms"],
     "data": [
         "views/mis_builder_view.xml",
     ],

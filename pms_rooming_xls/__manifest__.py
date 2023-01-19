@@ -9,7 +9,7 @@
     "version": "14.0.1.0.0",
     "license": "AGPL-3",
     "depends": [
-        #"report_xlsx_helper",
+        "report_xlsx_helper",
         "pms",
     ],
     "data": [
