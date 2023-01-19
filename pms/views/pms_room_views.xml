@@ -3,7 +3,6 @@
     <record model="ir.ui.view" id="pms_room_view_form">
         <field name="name">pms.room.form</field>
         <field name="model">pms.room</field>
-        <field name="priority" eval="30" />
         <field name="arch" type="xml">
             <form string="Property Room">
                 <sheet>
@@ -24,8 +23,20 @@
                     <div class="oe_title">
                         <label for="name" string="Name" />
                         <h1>
-                            <field name="name" />
+                            <field
+                                name="name"
+                                attrs="{'readonly':[('shared_room_id','!=', False)]}"
+                            />
+                            <field
+                                name="shared_room_id"
+                                string="Ubication"
+                                invisible='True'
+                            />
                         </h1>
+                        <!-- <label for="to_be_cleaned" string="To be Cleaned" />
+              <h2>
+                <field name="to_be_cleaned"/>
+              </h2> -->
                     </div>
                     <notebook>
                         <page name="information_pms_room" string="Information">
@@ -35,17 +46,25 @@
                                     invisible="0"
                                     force_save="1"
                                 />
-                                <field name="ubication_id" string="Ubication" />
-                                <!-- <field name="categ_id" select="1" domain="[('isroomtype','=',True)]" string="Room Type" /> -->
-                                <field name="room_type_id" string="Room Type" />
-                                <field name="is_shared_room" />
                                 <field
-                                    name="parent_id"
-                                    attrs="{'invisible':[('parent_id', '=', False)]}"
+                                    name="floor_id"
+                                    string="Ubication"
+                                    attrs="{'readonly':[('shared_room_id','!=', False)]}"
                                 />
-                                <field name="capacity" />
-                                <field name="extra_beds_allowed" />
-                                <field name="short_name" />
+                                <!-- <field name="categ_id" select="1" domain="[('isroomtype','=',True)]" string="Room Type" /> -->
+                                <field
+                                    name="room_type_id"
+                                    string="Room Type"
+                                    attrs="{'readonly':[('shared_room_id','!=', False)]}"
+                                />
+                                <field
+                                    name="capacity"
+                                    attrs="{'readonly':[('shared_room_id','!=', False)]}"
+                                />
+                                <field
+                                    name="extra_beds_allowed"
+                                    attrs="{'invisible':[('shared_room_id','!=', False)]}"
+                                />
                                 <!-- <field name="uom_id" invisible="1" /> -->
                             </group>
                             <group>
@@ -69,33 +88,12 @@
                                 <!-- <field name="description" colspan="2" string="Description Sales"/> -->
                             </group>
                         </page>
-                        <page string="Amenities">
-                            <field name="room_amenity_ids" />
-                        </page>
-                        <page
-                            string="Shared Room"
-                            attrs="{'invisible':[('is_shared_room', '=', False)]}"
-                        >
-                            <group>
-                                <field
-                                    name="child_ids"
-                                    context="{'default_parent_id': active_id}"
-                                    nolabel="1"
-                                >
-                                    <tree editable="bottom">
-                                        <field name="sequence" widget="handle" />
-                                        <field name="name" />
-                                        <field name="room_type_id" />
-                                        <field name="capacity" />
-                                        <field name="parent_id" invisible="1" />
-                                        <field name="pms_property_id" invisible="1" />
-                                    </tree>
-                                </field>
-                            </group>
-                        </page>
                     </notebook>
                     <group>
-                        <field name="sequence" />
+                        <field
+                            name="sequence"
+                            attrs="{'readonly':[('shared_room_id','!=', False)]}"
+                        />
                     </group>
                 </sheet>
             </form>
@@ -143,33 +141,15 @@
         <field name="name">pms.room.search</field>
         <field name="model">pms.room</field>
         <field name="arch" type="xml">
-            <search string="Room">
+            <search string="Property Room">
                 <field name="name" />
                 <field name="room_type_id" />
                 <field name="capacity" />
-                <field name="room_amenity_ids" />
                 <newline />
-                <searchpanel>
-                    <field
-                        name="pms_property_id"
-                        string="Property"
-                        enable_counters="1"
-                        select="multi"
-                    />
-                    <field
-                        name="room_type_id"
-                        string="Room Type"
-                        enable_counters="1"
-                        icon="fa-hotel"
-                        color="#784f73"
-                    />
-                    <field
-                        name="ubication_id"
-                        string="Ubication"
-                        enable_counters="1"
-                        color="#875A7B"
-                    />
-                </searchpanel>
+                <!--<filter name="available" string="Available"
+                    domain="[('status','=', 'available')]" help="Available Rooms" />-->
+                <!--<filter string="Reserved" domain="[('status','=', 'occupied')]"
+                    help="Reserved Rooms" />-->
             </search>
         </field>
     </record>
@@ -177,16 +157,12 @@
         <field name="name">pms.room.tree</field>
         <field name="model">pms.room</field>
         <field name="arch" type="xml">
-            <tree string="Property Room" editable="bottom" multi_edit="1" sample="1">
+            <tree string="Property Room">
                 <field name="sequence" widget="handle" />
                 <field name="pms_property_id" />
                 <field name="name" />
                 <field name="room_type_id" />
-                <field name="ubication_id" />
                 <field name="capacity" />
-                <field name="extra_beds_allowed" />
-                <field name="room_amenity_ids" widget="many2many_tags" />
-                <field name="short_name" />
             </tree>
         </field>
     </record>
@@ -269,7 +245,7 @@
         id="menu_open_pms_room_form"
         action="action_pms_room_form"
         sequence="5"
-        parent="pms.pms_rooms_menu"
+        parent="pms.menu_pms_room"
     />
     <!-- Room Categories -->
     <!-- <record id="product_category_tree_view" model="ir.ui.view">

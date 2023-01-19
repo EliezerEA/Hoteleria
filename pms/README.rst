@@ -7,9 +7,9 @@ PMS (Property Management System)
    !! changes will be overwritten.                   !!
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-.. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
+.. |badge1| image:: https://img.shields.io/badge/maturity-Alpha-red.png
     :target: https://odoo-community.org/page/development-status
-    :alt: Beta
+    :alt: Alpha
 .. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
@@ -25,11 +25,16 @@ PMS (Property Management System)
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module is an all-in-one property management system (PMS) focused on medium-sized properties
+This module is an all-in-one property management system (PMS) focused on medium-sized hotels
 for managing every aspect of your property's daily operations.
 
-You can manage properties with multi-property and multi-company support, including your rooms inventory,
-reservations, check-in, daily reports, board services, rate and availability plans among other property functionalities.
+You can manage hotel properties with multi-hotel and multi-company support, including your rooms inventory,
+reservations, check-in, daily reports, board services, rate and restriction plans among other hotel functionalities.
+
+.. IMPORTANT::
+   This is an alpha version, the data model and design can change at any time without warning.
+   Only for development or testing purpose, do not use in production.
+   `More details on development status <https://odoo-community.org/page/development-status>`_
 
 **Table of contents**
 
@@ -39,20 +44,20 @@ reservations, check-in, daily reports, board services, rate and availability pla
 Installation
 ============
 
-This module depends on modules ``base``, ``mail``, ``sale`` and ``multi_pms_properties``.
-Ensure yourself to have all them in your addons list.
+This module depends on modules ``base``, ``sale_stock``, ``account_payment_return``, ``partner_firstname``,
+and ``account_cancel``. Ensure yourself to have all them in your addons list.
 
 Configuration
 =============
 
-You will find the hotel settings in PMS Management > Configuration > Properties > Your Property.
+You will find the hotel settings in Settings > Users & Companies > Hotels > Your Hotel.
 
 This module required additional configuration for company, accounting, invoicing and user privileges.
 
 Usage
 =====
 
-To use this module, please, read the complete user guide at `<roomdoo.com>`_.
+To use this module, please, read the complete user guide at https://roomdoo.com.
 
 Bug Tracker
 ===========
@@ -70,22 +75,18 @@ Credits
 Authors
 ~~~~~~~
 
-* Commit [Sun]
+* Dario Lodeiros
+* Alexadre Diaz
+* Pablo Quesada
+* Jose Luis Algara
 
 Contributors
 ~~~~~~~~~~~~
 
+* Dario Lodeiros <dario@commitsun.com>
 * Alexandre Díaz
 * Pablo Quesada
 * Jose Luis Algara
-* `Commit [Sun] <https://www.commitsun.com>`:
-
-  * Dario Lodeiros
-  * Eric Antones
-  * Sara Lago
-  * Brais Abeijon
-  * Miguel Padin
-* Omar Castiñeira <omar@comunitea.com>
 
 Maintainers
 ~~~~~~~~~~~
